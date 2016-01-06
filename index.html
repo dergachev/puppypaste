@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<title>PuppyPaste - extract HTML or markdown from web copied text</title>
+<link rel="stylesheet" href="normalize.css"></link>
+<link rel="stylesheet" href="htmlpaste.css"></link>
+<script src="md.js"></script>
+<script src="jquery.min.js"></script>
+<script src="htmlpaste.js"></script>
+<style>
+</style>
+</head>
+<body>
+  <header>
+    <a style="float: right" href="https://github.com/dergachev/puppypaste">Source on GitHub</a> 
+    <a style="float: right" href="https://github.com/dergachev/puppypaste">Help</a>
+     <h1><img id="logo" src="puppypaste-logotype-600.gif" /> </h1>
+     <div id="motto">
+       <p>Paste content from any website without losing HTML formatting, get back the source as HTML or Markdown. Great for wikis and gists.</p>
+     </div>
+  </header>
+  <div class="row cf toolbar">
+    <div class="col" style="float: right;">
+      <!--
+        <label><input type="checkbox" id="gfm"> GitHub Flavored Markdown</label>
+      -->
+    </div>
+  </div>
+  <div class="row cf">
+    <div class="col">
+      <h2>HTML</h2>
+
+      <div contenteditable="true" id="input" cols="100" rows="10"> <h3>Some HTML</h3>
+<p>Hello world! Paste some <b>HTML</b> into this box and the markdown will appear on the right.</p>
+<p>Some things that work:</p>
+<ul>
+  <li><a href="http://google.com">Links to Google</a></li>
+  <li>Nested lists of cool animals: <ul><li>shifty snakes</li><li><em>cool cats</em></li></ul> </li>
+</ul>
+
+<p>Enjoy!</p>
+
+</div>
+
+    </div>
+
+    <div class="col">
+      <h2 id="output-header"><b>Markdown</b> or <a id="output-header-html" href="#">HTML</a> or <a id="output-header-textile" href="#">Textile</a></h2>
+      <textarea readonly id="output"></textarea>
+    </div>
+  </div>
+  <footer>
+        <p>PuppyPaste is a side-project of <a href="https://github.com/dergachev/">Alex Dergachev</a> who's currently using it to copy meeting notes from Gmail to Redmine as part of his work at <a href="http://evolvingweb.ca">Evolving Web</a>, a Drupal consultancy in Montreal, Canada.</p>
+        <img class="avatar" src="http://www.gravatar.com/avatar/0bceeea1c7179c102b50812a1d2c74c3.png" alt="Me" />
+        <p><a href="http://github.com/dergachev">github</a> | <a href="http://twitter.com/dergachev">twitter</a> | <a href="https://www.linkedin.com/in/alexdergachev">linked.in</a></p>
+
+      </footer>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  // TODO: fixme
+  _gaq.push(['_setAccount', 'UA-XXX-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
