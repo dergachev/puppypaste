@@ -38,16 +38,16 @@ jQuery.fn.selectText = function(){
 
   var types = {
     'markdown': {
-      'converter': function(text) { return md(text, {'absolute': true}); },
-      'label': '<b>Markdown</b> or <a id="output-header-html" href="#">HTML</a> or <a id="output-header-textile" href="#">Textile</a>'
+      'converter': function(text) { return md(text, {'absolute': true, 'inline': true}); },
+      'label': '<b>Markdown</b> or <a id="output-header-html" href="#">HTML</a> or <a id="output-header-textile" href="#">Textile (Broken)</a>'
     },
     'html': {
       'converter': function(text) { return text; },
-      'label': '<a id="output-header-markdown" href="#">Markdown</a> or <b>HTML</b> or <a id="output-header-textile" href="#">Textile</a>'
+      'label': '<a id="output-header-markdown" href="#">Markdown</a> or <b>HTML</b> or <a id="output-header-textile" href="#">Textile (Broken)</a>'
     },
     'textile': {
-      'converter': function(text) { return "TEXTILE CONVERTER COMING SOON"; },
-      'label': '<a id="output-header-markdown" href="#">Markdown</a> or <a id="output-header-html" href="#">HTML</a> or <b>Textile</b>'
+      'converter': function(text) { return textile(text, {'absolute': true, 'inline': true}); },
+      'label': '<a id="output-header-markdown" href="#">Markdown</a> or <a id="output-header-html" href="#">HTML</a> or <b>Textile (Broken)</b>'
     }
   }
 

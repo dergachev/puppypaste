@@ -1,5 +1,5 @@
 (function() {
-  var DEFAULT_OPTIONS, HtmlParser, PREVIOUS_MD, REGEX, REPLACEMENTS, R_HIDDEN_STYLES, R_HIDDEN_VALUE, R_IGNORE_CHILDREN, R_PARAGRAPH_ONLY, key, md, padLeft, result, trim,
+  var DEFAULT_OPTIONS, HtmlParser, PREVIOUS_MD, REGEX, REPLACEMENTS, R_HIDDEN_STYLES, R_HIDDEN_VALUE, R_IGNORE_CHILDREN, R_PARAGRAPH_ONLY, key, textile, padLeft, result, trim,
     __hasProp = {}.hasOwnProperty,
     _this = this;
 
@@ -10,7 +10,7 @@
     inline: false
   };
 
-  PREVIOUS_MD = this.md;
+  PREVIOUS_TEXTILE = this.textile;
 
   REPLACEMENTS = {
     '\\\\': '\\\\',
@@ -95,6 +95,7 @@
       this.html = html != null ? html : '';
       this.options = options != null ? options : {};
       this.atLeft = this.atNoWS = this.atP = true;
+      this.inLink = false;
       this.buffer = '';
       this.exceptions = [];
       this.order = 1;
@@ -212,8 +213,8 @@
     HtmlParser.prototype.li = function() {
       var str;
 
-      str = this.inOrderedList ? "" + (this.order++) + ". " : '* ';
-      str = padLeft(str, (this.listDepth - 1) * 2);
+      str = this.inOrderedList ? "# " : '* ';
+      str = padLeft(str, (this.listDepth - 1), this.inOrderedList ? "#" : "*");
       return this.append(str);
     };
 
@@ -358,9 +359,7 @@
               var _i, _results;
 
               _results = [];
-              for (i = _i = 1; 1 <= level ? _i <= level : _i >= level; i = 1 <= level ? ++_i : --_i) {
-                _results.push('#');
-              }
+              _results.push("h" + level + ". ");
               return _results;
             })()).join('')) + " ");
           } else if (R_PARAGRAPH_ONLY.test(ele.tagName)) {
@@ -422,7 +421,8 @@
                 this.li();
                 break;
               case 'PRE':
-                after1 = this.pushLeft('    ');
+                this.output('<pre>');
+                after1 = this.outputLater('</pre>');
                 after2 = this.pre();
                 after = function() {
                   after1();
@@ -456,10 +456,9 @@
                 if (title) {
                   href += " \"" + title + "\"";
                 }
-                suffix = this.options.inline ? "(" + href + ")" : "[" + ((_ref = (_base = this.linkMap)[href]) != null ? _ref : _base[href] = this.links.push(href) - 1) + "]";
-                this.output('[');
                 this.atNoWS = true;
-                after = this.outputLater("]" + suffix);
+                this.inLink = true;
+                after = this.outputLater(":" + href + " ");
                 break;
               case 'IMG':
                 skipChildren = true;
@@ -467,7 +466,7 @@
                 if (!src) {
                   break;
                 }
-                this.output("![" + (this.attr(ele, 'alt')) + "](" + src + ")");
+                this.output("!" + src + "(" + this.attr(ele, 'alt') + ")!");
                 break;
               case 'FRAME':
               case 'IFRAME':
@@ -501,9 +500,10 @@
             this.process(childNode);
           }
         }
+        this.inLink = false;
         return after != null ? after.call(this) : void 0;
       } else if (ele.nodeType === this.win.Node.TEXT_NODE) {
-        return this.output(this.inPre ? ele.nodeValue : this.inCode ? this.inCodeProcess(ele.nodeValue) : this.nonPreProcess(ele.nodeValue));
+        return this.output(this.inPre ? ele.nodeValue : this.inCode ? this.inCodeProcess(ele.nodeValue) : this.inLink ? ('"' + this.nonPreProcess(ele.nodeValue) + '"') : this.nonPreProcess(ele.nodeValue));
       }
     };
 
@@ -563,23 +563,23 @@
 
   })();
 
-  this.md = md = function(html, options) {
+  this.textile = textile = function(html, options) {
     return new HtmlParser(html, options).parse();
   };
 
   if (typeof module !== "undefined" && module !== null ? module.exports : void 0) {
-    module.exports = md;
+    module.exports = textile;
   } else if (typeof define === 'function' && define.amd) {
-    define('md', function() {
-      return md;
+    define('textile', function() {
+      return textile;
     });
   }
 
-  md.version = md.VERSION = '3.0.2';
+  textile.version = textile.VERSION = '3.0.2';
 
-  md.noConflict = function() {
-    _this.md = PREVIOUS_MD;
-    return md;
+  textile.noConflict = function() {
+    _this.textile = PREVIOUS_MD;
+    return textile;
   };
 
 }).call(this);
