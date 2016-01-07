@@ -38,7 +38,7 @@ jQuery.fn.selectText = function(){
 
   var types = {
     'markdown': {
-      'converter': function(text) { return md(text); },
+      'converter': function(text) { return md(text, {'absolute': true}); },
       'label': '<b>Markdown</b> or <a id="output-header-html" href="#">HTML</a> or <a id="output-header-textile" href="#">Textile</a>'
     },
     'html': {
