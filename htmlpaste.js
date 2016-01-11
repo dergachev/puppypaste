@@ -39,36 +39,36 @@ jQuery.fn.selectText = function(){
   var types = {
     'markdown': {
       'converter': function(text) { return md(text, {'absolute': true, 'inline': true}); },
-      'label': '<b>Markdown</b> or <a id="output-header-html" href="#">HTML</a> or <a id="output-header-textile" href="#">Textile (Broken)</a>'
+      'buttonSelector': '#output-header-markdown',
     },
     'html': {
       'converter': function(text) { return text; },
-      'label': '<a id="output-header-markdown" href="#">Markdown</a> or <b>HTML</b> or <a id="output-header-textile" href="#">Textile (Broken)</a>'
+      'buttonSelector': '#output-header-html',
     },
     'textile': {
       'converter': function(text) { return textile(text, {'absolute': true, 'inline': true}); },
-      'label': '<a id="output-header-markdown" href="#">Markdown</a> or <a id="output-header-html" href="#">HTML</a> or <b>Textile (Broken)</b>'
+      'buttonSelector': '#output-header-textile',
     }
   }
 
+  // By default it's set to markdown.
   var selectedType = types.markdown;
 
   jQuery(function($) {
-    $('#output-header').on('click', '#output-header-html', function() {
-      $('#output-header').html(types.html.label);
-      selectedType = types.html;
-      updateOutput();
-    });
-    $('#output-header').on('click', '#output-header-markdown', function() {
-      $('#output-header').html(types.markdown.label);
-      selectedType = types.markdown;
-      updateOutput();
-    });
-    $('#output-header').on('click', '#output-header-textile', function() {
-      $('#output-header').html(types.textile.label);
-      selectedType = types.textile;
-      updateOutput();
-    });
+
+    var setClick = function(type) {
+      $('#output-header').on('click', type.buttonSelector, function() {
+        $('#output-header a').removeClass('active');
+        $(type.buttonSelector).addClass('active');
+        selectedType = type;
+        updateOutput();
+        return false;
+      });
+    }
+
+    setClick(types.html, '#output-header-html');
+    setClick(types.markdown, '#output-header-markdown');
+    setClick(types.textile, '#output-header-textile');
 
     // focus select all
     $('#input').focus(function() {

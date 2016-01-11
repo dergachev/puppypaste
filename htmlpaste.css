@@ -99,10 +99,6 @@ h2 {
 
 /* AD */
 
-#output-header b {
-  color: #ffc;
-}
-
 header a {
   margin-left: 20px;
 }
@@ -145,3 +141,15 @@ img#logo {
     max-width: 400px;
   }
 }
+
+#output-header-textile:after {
+  font-size: 50%;
+  vertical-align: super;
+  content: "Beta";
+  color: red;
+}
+
+#output-header a.active {
+  color: #ffc;
+}
+
