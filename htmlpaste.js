@@ -41,6 +41,10 @@ jQuery.fn.selectText = function(){
       'converter': function(text) { return md(text, {'absolute': true, 'inline': true}); },
       'buttonSelector': '#output-header-markdown',
     },
+    'htmlclean': {
+      'converter': function(text) { return markdown.toHTML(md(text, {'absolute': true, 'inline': true})); },
+      'buttonSelector': '#output-header-htmlclean',
+    },
     'html': {
       'converter': function(text) { return text; },
       'buttonSelector': '#output-header-html',
@@ -70,7 +74,9 @@ jQuery.fn.selectText = function(){
       });
     }
 
+
     setClick(types.html);
+    setClick(types.htmlclean);
     setClick(types.markdown);
     setClick(types.textile);
     setClick(types.jira);
