@@ -142,7 +142,7 @@ img#logo {
   }
 }
 
-#output-header-textile:after {
+#output-header-textile:after, #output-header-jira:after {
   font-size: 50%;
   vertical-align: super;
   content: "Beta";

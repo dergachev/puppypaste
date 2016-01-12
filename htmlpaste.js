@@ -48,6 +48,10 @@ jQuery.fn.selectText = function(){
     'textile': {
       'converter': function(text) { return textile(text, {'absolute': true, 'inline': true}); },
       'buttonSelector': '#output-header-textile',
+    },
+    'jira': {
+      'converter': function(text) { return md2jira(md(text, {'absolute': true, 'inline': true})); },
+      'buttonSelector': '#output-header-jira',
     }
   }
 
@@ -66,9 +70,10 @@ jQuery.fn.selectText = function(){
       });
     }
 
-    setClick(types.html, '#output-header-html');
-    setClick(types.markdown, '#output-header-markdown');
-    setClick(types.textile, '#output-header-textile');
+    setClick(types.html);
+    setClick(types.markdown);
+    setClick(types.textile);
+    setClick(types.jira);
 
     // focus select all
     $('#input').focus(function() {
