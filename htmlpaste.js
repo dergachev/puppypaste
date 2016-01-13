@@ -15,6 +15,10 @@ jQuery.fn.selectText = function(){
    }
 };
 
+// shim to make j2m.js (and other npm libs) not crash
+function require(str) {
+  return window[str];
+}
 
 (function () {
   var input, output, gfm;
@@ -54,7 +58,7 @@ jQuery.fn.selectText = function(){
       'buttonSelector': '#output-header-textile',
     },
     'jira': {
-      'converter': function(text) { return md2jira(md(text, {'absolute': true, 'inline': true})); },
+      'converter': function(text) { return J2M.prototype.to_jira(md(text, {'absolute': true, 'inline': true})); },
       'buttonSelector': '#output-header-jira',
     }
   }
