@@ -78,12 +78,14 @@ function require(str) {
       });
     }
 
+    // associate click handler with all buttons for each type
+    for(var i = 0; i < types.length; i++) {
+      var type = types[i];
+      if (type.buttonSelector) {
+        setClick(type);
+      }
+    }
 
-    setClick(types.html);
-    setClick(types.htmlclean);
-    setClick(types.markdown);
-    setClick(types.textile);
-    setClick(types.jira);
 
     // focus select all
     $('#input').focus(function() {
