@@ -21,11 +21,23 @@ function require(str) {
 }
 
 (function () {
+
   var input, output, gfm;
 
   function updateOutput() {
-    output.value = selectedType.converter(input.innerHTML);
+    output.value = getSelectedType().converter(input.innerHTML);
   }
+
+  function setSelectedType(type) {
+    window.localStorage.setItem("selectedType", type);
+  }
+
+  function getSelectedType() {
+    // By default it's set to markdown.
+    var typeKey = window.localStorage.getItem("selectedType") || "markdown";
+    return types[typeKey];
+  }
+
 
   document.addEventListener("DOMContentLoaded", function(event) {
     input = document.getElementById('input');
@@ -63,28 +75,25 @@ function require(str) {
     }
   }
 
-  // By default it's set to markdown.
-  var selectedType = types.markdown;
-
   jQuery(function($) {
 
-    var setClick = function(type) {
+    var setClick = function(typeKey) {
+      var type = types[typeKey];
       $('#output-header').on('click', type.buttonSelector, function() {
         $('#output-header a').removeClass('active');
         $(type.buttonSelector).addClass('active');
-        selectedType = type;
+        setSelectedType(typeKey);
         updateOutput();
         return false;
       });
     }
 
     // associate click handler with all buttons for each type
-    for(var i = 0; i < types.length; i++) {
-      var type = types[i];
+    jQuery.each(types, function( typeKey, type ) {
       if (type.buttonSelector) {
-        setClick(type);
+        setClick(typeKey);
       }
-    }
+    });
 
 
     // focus select all
