@@ -25,7 +25,9 @@ function require(str) {
   var input, output;
 
   function updateOutput() {
-    output.value = getSelectedType().converter(input.innerHTML);
+    var html = input.data('redactor').getCode();
+    var outData = getSelectedType().converter(html);
+    output.val(outData);
   }
 
   function updateButtons(type) {
@@ -72,11 +74,16 @@ function require(str) {
     input = jQuery('#input');
     output = jQuery('#output');
 
+    input.redactor({
+      keyupCallback: updateOutput,
+      execCommandCallback: updateOutput,
+    });
+
     updateOutput();
     updateButtons(getSelectedType());
 
-    input.on('input', updateOutput);
-    output.on('keydown', updateOutput);
+    // input.on('input', updateOutput);
+    // input.on('keydown', updateOutput);
 
     var setClick = function(typeKey) {
       var type = types[typeKey];
@@ -96,9 +103,6 @@ function require(str) {
     });
 
     // focus select all
-    $('#input').focus(function() {
-      $(this).selectText();
-    })
     $('#output').focus(function() {
       var $this = $(this);
       $this.select();
