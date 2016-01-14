@@ -22,10 +22,15 @@ function require(str) {
 
 (function () {
 
-  var input, output, gfm;
+  var input, output;
 
   function updateOutput() {
     output.value = getSelectedType().converter(input.innerHTML);
+  }
+
+  function updateButtons(type) {
+    $('#output-header a').removeClass('active');
+    $(type.buttonSelector).addClass('active');
   }
 
   function setSelectedType(type) {
@@ -37,20 +42,6 @@ function require(str) {
     var typeKey = window.localStorage.getItem("selectedType") || "markdown";
     return types[typeKey];
   }
-
-
-  document.addEventListener("DOMContentLoaded", function(event) {
-    input = document.getElementById('input');
-    output = document.getElementById('output');
-    // gfm = document.getElementById('gfm');
-
-    input.addEventListener('input', updateOutput, false);
-    input.addEventListener('keydown', updateOutput, false);
-
-    // gfm.addEventListener('change', updateOutput, false);
-
-    updateOutput();
-  });
 
   var types = {
     'markdown': {
@@ -76,14 +67,23 @@ function require(str) {
   }
 
   jQuery(function($) {
+    
+    // initialize on load
+    input = jQuery('#input');
+    output = jQuery('#output');
+
+    updateOutput();
+    updateButtons(getSelectedType());
+
+    input.on('input', updateOutput);
+    output.on('keydown', updateOutput);
 
     var setClick = function(typeKey) {
       var type = types[typeKey];
       $('#output-header').on('click', type.buttonSelector, function() {
-        $('#output-header a').removeClass('active');
-        $(type.buttonSelector).addClass('active');
         setSelectedType(typeKey);
         updateOutput();
+        updateButtons(type);
         return false;
       });
     }
@@ -94,7 +94,6 @@ function require(str) {
         setClick(typeKey);
       }
     });
-
 
     // focus select all
     $('#input').focus(function() {
