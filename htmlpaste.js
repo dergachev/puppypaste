@@ -7,7 +7,7 @@ jQuery.fn.selectText = function(){
        range.moveToElementText(element);
        range.select();
    } else if (window.getSelection) {
-       var selection = window.getSelection();        
+       var selection = window.getSelection();
        var range = document.createRange();
        range.selectNodeContents(element);
        selection.removeAllRanges();
@@ -45,13 +45,31 @@ function require(str) {
     return types[typeKey];
   }
 
+  function toMarkdown(html) {
+    return md(html, {'absolute': true, 'inline': true});
+  }
+
+  function toHTMLClean(html) {
+    var mdText = toMarkdown(html);
+    return markdown.toHTML(mdText);
+  }
+
+  function toTextile(html) {
+    return textile(html, {'absolute': true, 'inline': true});
+  }
+
+  function toJira(html) {
+    var mdText = toMarkdown(html);
+    return J2M.prototype.to_jira(mdText);
+  }
+
   var types = {
     'markdown': {
-      'converter': function(text) { return md(text, {'absolute': true, 'inline': true}); },
+      'converter': toMarkdown,
       'buttonSelector': '#output-header-markdown',
     },
     'htmlclean': {
-      'converter': function(text) { return markdown.toHTML(md(text, {'absolute': true, 'inline': true})); },
+      'converter': toHTMLClean,
       'buttonSelector': '#output-header-htmlclean',
     },
     'html': {
@@ -59,17 +77,17 @@ function require(str) {
       'buttonSelector': '#output-header-html',
     },
     'textile': {
-      'converter': function(text) { return textile(text, {'absolute': true, 'inline': true}); },
+      'converter': toTextile,
       'buttonSelector': '#output-header-textile',
     },
     'jira': {
-      'converter': function(text) { return J2M.prototype.to_jira(md(text, {'absolute': true, 'inline': true})); },
+      'converter': toJira,
       'buttonSelector': '#output-header-jira',
     }
   }
 
   jQuery(function($) {
-    
+
     // initialize on load
     input = jQuery('#input');
     output = jQuery('#output');
