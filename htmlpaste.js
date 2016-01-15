@@ -30,9 +30,12 @@ function require(str) {
     output.val(outData);
   }
 
-  function updateButtons(type) {
+  function updateOutputUI(type) {
     $('#output-header a').removeClass('active');
     $(type.buttonSelector).addClass('active');
+
+    $('#output-container .output-toolbar').removeClass('active');
+    $(type.toolbarSelector).addClass('active');
   }
 
   function setSelectedType(type) {
@@ -56,9 +59,12 @@ function require(str) {
     return md(html, {'absolute': true, 'inline': true});
   }
 
-  function toHTMLClean(html) {
-    var mdText = toMarkdown(html);
-    return markdown.toHTML(mdText);
+  function toHTML(html) {
+    if (jQuery('#setting-html-tidy').prop('checked')) {
+      var mdText = toMarkdown(html);
+      return markdown.toHTML(mdText);
+    }
+    return html;
   }
 
   function toTextile(html) {
@@ -75,22 +81,22 @@ function require(str) {
     'markdown': {
       'converter': toMarkdown,
       'buttonSelector': '#output-header-markdown',
-    },
-    'htmlclean': {
-      'converter': toHTMLClean,
-      'buttonSelector': '#output-header-htmlclean',
+      'toolbarSelector': '#output-toolbar-markdown',
     },
     'html': {
-      'converter': function(text) { return text; },
+      'converter': toHTML,
       'buttonSelector': '#output-header-html',
+      'toolbarSelector': '#output-toolbar-html',
     },
     'textile': {
       'converter': toTextile,
       'buttonSelector': '#output-header-textile',
+      'toolbarSelector': '#output-toolbar-textile',
     },
     'jira': {
       'converter': toJira,
       'buttonSelector': '#output-header-jira',
+      'toolbarSelector': '#output-toolbar-jira',
     }
   }
 
@@ -106,17 +112,14 @@ function require(str) {
     });
 
     updateOutput();
-    updateButtons(getSelectedType());
-
-    // input.on('input', updateOutput);
-    // input.on('keydown', updateOutput);
+    updateOutputUI(getSelectedType());
 
     var setClick = function(typeKey) {
       var type = types[typeKey];
       $('#output-header').on('click', type.buttonSelector, function() {
         setSelectedType(typeKey);
         updateOutput();
-        updateButtons(type);
+        updateOutputUI(type);
         return false;
       });
     }
@@ -126,6 +129,10 @@ function require(str) {
       if (type.buttonSelector) {
         setClick(typeKey);
       }
+    });
+
+    $('#setting-html-tidy').change(function() {
+      updateOutput();
     });
 
     // focus select all

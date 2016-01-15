@@ -56,8 +56,26 @@ Hello world!
     </div>
 
     <div class="col">
-      <h2 id="output-header"><a id="output-header-markdown" class="active" href="#">Markdown</a> / <a id="output-header-html" href="#">HTML</a> / <a id="output-header-htmlclean" href="#">Tidy HTML</a> / <a id="output-header-textile" href="#">Textile</a> / <a id="output-header-jira" href="#">Jira</a></h2>
+      <h2 id="output-header"><a id="output-header-markdown" class="active" href="#">Markdown</a> / <a id="output-header-html" href="#">HTML</a> / <a id="output-header-textile" href="#">Textile</a> / <a id="output-header-jira" href="#">Jira</a></h2>
+
+
+<div id="output-container" class="redactor_box">
+  <ul id="output-toolbar-markdown" class="active redactor_toolbar output-toolbar">
+    <!--
+    <li><a href="javascript:void(null);" title="HTML2" class="redactor_btn_html2" tabindex="-1"> BOB</a> </li>
+    <li class="redactor_separator"></li>
+    <li><label><input type="checkbox" name="html-tidy" value="1"/ >Tidy HTML</label></li>
+    -->
+  </ul>
+  <ul id="output-toolbar-html" class="redactor_toolbar output-toolbar">
+    <li><label><input type="checkbox" id="setting-html-tidy" name="html-tidy" value="1"/ >Clean HTML</label></li>
+  </ul>
+  <ul id="output-toolbar-textile" class="redactor_toolbar output-toolbar">
+  </ul>
+  <ul id="output-toolbar-jira" class="redactor_toolbar output-toolbar">
+  </ul>
       <textarea readonly id="output"></textarea>
+</div>
     </div>
   </div>
   <footer>

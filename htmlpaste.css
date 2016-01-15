@@ -99,7 +99,7 @@ h2 {
 
 /* AD */
 
-header a {
+header a.menu-item {
   margin-left: 20px;
 }
 
@@ -142,6 +142,10 @@ img#logo {
   }
 }
 
+textarea#output {
+  background: #f5f5f5;
+}
+
 #output-header-textile:after, #output-header-jira:after {
   font-size: 50%;
   vertical-align: super;
@@ -153,3 +157,35 @@ img#logo {
   color: #ffc;
 }
 
+/* Redactor hacks */
+#output-container .redactor_toolbar {
+  font-size: inherit !important;
+}
+
+#output-container .redactor_toolbar li {
+  /* padding-top: 10px !important; */
+  line-height: 1.8em;
+}
+
+#output-container .redactor_toolbar li label {
+  margin-left: 3px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #666;
+}
+
+#output-container .redactor_toolbar li label input {
+  margin-right: 5px;
+}
+
+#output-container.redactor_box textarea {
+  padding: 14px;
+}
+
+#output-container .output-toolbar {
+  display: none;
+}
+
+#output-container .output-toolbar.active {
+  display: block;
+}
