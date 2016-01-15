@@ -45,7 +45,14 @@ function require(str) {
     return types[typeKey];
   }
 
+  // Work-around bug in md.html markdown converter,
+  // which ignores that in HTML \n is just a space.
+  function fixExtraSpaces(html) {
+    return html.replace(/[\n ]+/g, " ");
+  }
+
   function toMarkdown(html) {
+    html = fixExtraSpaces(html);
     return md(html, {'absolute': true, 'inline': true});
   }
 
@@ -55,6 +62,7 @@ function require(str) {
   }
 
   function toTextile(html) {
+    html = fixExtraSpaces(html);
     return textile(html, {'absolute': true, 'inline': true});
   }
 
