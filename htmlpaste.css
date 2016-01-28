@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
+
 .cf:before,
 .cf:after {
   content: " ";
@@ -20,9 +22,9 @@
 
 body {
   background-color: #ccc;
+  font-family: "Open Sans";
   margin: 0 auto;
   font-size: 14px;
-  font-family: sans-serif;
   line-height: 1.4;
   color: #333;
 }
@@ -81,7 +83,7 @@ h2 {
 
 @media (min-width: 768px) {
   body {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .col {
@@ -111,14 +113,19 @@ header a.menu-item {
 }
 
 footer {
-  padding: 10px 80px;
+  background: black;
+  padding: 40px 80px ;
   width: 100%;
-  background-color: white;
   font-size: 15px;
   text-align: center;
-  color: black;
+  color: white;
   /* position:fixed; */
   /* bottom:50px; */
+}
+
+footer p{
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 img.avatar {
@@ -127,6 +134,7 @@ img.avatar {
   -moz-border-radius: 40px;
   width:72px;
   height:72px;
+  margin: 0 0 10px 0;
 }
 
 img#logo {
@@ -188,4 +196,30 @@ textarea#output {
 
 #output-container .output-toolbar.active {
   display: block;
+}
+
+.social{
+  font-size: 2em;
+  padding: 1em 0 0;
+}
+.social ul{
+  margin: 0;
+  padding: 0;
+}
+.social li{
+  display: inline-block;
+  padding: 0 0.2em;
+}
+
+.social a{
+  -o-transition: color 0.3s linear;
+  -moz-transition: color 0.3s linear;
+  -khtml-transition: color 0.3s linear;
+  -webkit-transition: color 0.3s linear;
+  -ms-transition: color 0.3s linear;
+  transition: color 0.3s linear;
+}
+
+a:hover{
+  color: white;
 }
