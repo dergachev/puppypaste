@@ -5,14 +5,15 @@
 <meta name="viewport" content="initial-scale=1">
 <title>PuppyPaste - extract HTML or markdown from web copied text</title>
 <link rel="stylesheet" href="normalize.css"></link>
-<link rel="stylesheet" href="htmlpaste.css"></link>
 <link rel="stylesheet" href="lib/redactor/redactor.css" />
 <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
+<link rel="stylesheet" href="htmlpaste.css"></link>
 <script src="lib/marked/marked.js"></script>
 <script src="lib/md.js"></script>
 <script src="lib/textile.js"></script>
 <script src="lib/jquery.min.js"></script>
 <script src="lib/redactor/redactor.min.js"></script>
+<script src="lib/clipboard.min.js"></script>
 <script src="htmlpaste.js"></script>
 <script src="lib/j2m.js"></script>
 <script src="lib/markdown-browser-0.6.0-beta1/markdown.js"></script>
@@ -21,15 +22,13 @@
 </head>
 <body>
   <header>
-    <a class="menu-item" style="float: right" href="https://github.com/dergachev/puppypaste">Source on GitHub</a>
-    <a class="menu-item" style="float: right" href="https://github.com/dergachev/puppypaste">Help</a>
+    <a class="menu-item right" href="https://github.com/dergachev/puppypaste"> <i class="fa fa-github"></i> Source on GitHub</a>
+    <a class="menu-item right" href="https://github.com/dergachev/puppypaste"><i class="fa fa-question-circle"></i>
+ Help</a>
      <h1><img id="logo" src="puppypaste-logotype-600.gif" /> </h1>
-     <div id="motto">
-       <p>Paste content from any website without losing HTML formatting, get back the source as HTML or Markdown. Great for wikis and <a href="https://gist.github.com">gists</a>.</p>
-     </div>
   </header>
   <div class="row cf toolbar">
-    <div class="col" style="float: right;">
+    <div class="col right">
       <!--
         <label><input type="checkbox" id="gfm"> GitHub Flavored Markdown</label>
       -->
@@ -37,7 +36,10 @@
   </div>
   <div class="row cf">
     <div class="col">
-      <h2>HTML</h2>
+      <div class="col-container">
+      <h2>HTML <span>(copy/paste directly from your browser)</span></h2>
+
+      <p>Paste content from any website without losing HTML formatting, get back the source as HTML or Markdown. Great for wikis and <a href="https://gist.github.com">gists</a>.</p>
 
       <div contenteditable="true" id="input" cols="100" rows="10">
 Hello world!
@@ -53,15 +55,25 @@ Hello world!
 <p>Enjoy!</p>
 
 </div>
-
+      </div>
     </div>
 
     <div class="col">
-      <h2 id="output-header"><a id="output-header-markdown" class="active" href="#">Markdown</a> / <a id="output-header-html" href="#">HTML</a> / <a id="output-header-textile" href="#">Textile</a> / <a id="output-header-jira" href="#">Jira</a></h2>
+      <div class="col-container">
+      <h2>convert to: </h2>
+
+      <div id="output-header">
+      <a id="output-header-markdown" class="active" href="#">Markdown</a>
+      <a id="output-header-html" href="#">HTML</a>
+      <a id="output-header-textile" href="#">Textile</a>
+      <a id="output-header-jira" href="#">Jira</a>
+      </div>
 
 
 <div id="output-container" class="redactor_box">
   <ul id="output-toolbar-markdown" class="active redactor_toolbar output-toolbar">
+    <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i>
+Select All and Copy to the clipboard</button></li>
     <!--
     <li><a href="javascript:void(null);" title="HTML2" class="redactor_btn_html2" tabindex="-1"> BOB</a> </li>
     <li class="redactor_separator"></li>
@@ -69,13 +81,21 @@ Hello world!
     -->
   </ul>
   <ul id="output-toolbar-html" class="redactor_toolbar output-toolbar">
-    <li><label><input type="checkbox" id="setting-html-tidy" name="html-tidy" value="1"/ >Clean HTML</label></li>
+    <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i>
+Select All and Copy to the clipboard</button></li>
+    <li class="redactor_separator"></li>
+    <li><div><input type="checkbox" id="setting-html-tidy" name="html-tidy" value="1"/ >Clean HTML</div></li>
   </ul>
   <ul id="output-toolbar-textile" class="redactor_toolbar output-toolbar">
+    <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i>
+Select All and Copy to the clipboard</button></li>
   </ul>
   <ul id="output-toolbar-jira" class="redactor_toolbar output-toolbar">
+    <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i>
+Select All and Copy to the clipboard</button></li>
   </ul>
       <textarea readonly id="output"></textarea>
+</div>
 </div>
     </div>
   </div>
