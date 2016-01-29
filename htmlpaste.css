@@ -44,9 +44,9 @@ a:visited {
 }
 
 h1 {
-  float: left;
-  margin: 0;
+  margin: 20px 0;
   font-size: 1em;
+  text-align: center;
 }
 
 h2 {

@@ -1,127 +1,120 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="initial-scale=1">
-<title>PuppyPaste - extract HTML or markdown from web copied text</title>
-<link rel="stylesheet" href="normalize.css"></link>
-<link rel="stylesheet" href="lib/redactor/redactor.css" />
-<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" />
-<link rel="stylesheet" href="htmlpaste.css"></link>
-<script src="lib/marked/marked.js"></script>
-<script src="lib/md.js"></script>
-<script src="lib/textile.js"></script>
-<script src="lib/jquery.min.js"></script>
-<script src="lib/redactor/redactor.min.js"></script>
-<script src="lib/clipboard.min.js"></script>
-<script src="htmlpaste.js"></script>
-<script src="lib/j2m.js"></script>
-<script src="lib/markdown-browser-0.6.0-beta1/markdown.js"></script>
-<style>
-</style>
-</head>
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+
+    <title>PuppyPaste - extract HTML or markdown from web copied text</title>
+
+    <link rel="stylesheet" href="normalize.css"></link>
+    <link rel="stylesheet" href="lib/redactor/redactor.css" />
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="htmlpaste.css"></link>
+
+    <script src="lib/marked/marked.js"></script>
+    <script src="lib/md.js"></script>
+    <script src="lib/textile.js"></script>
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/redactor/redactor.min.js"></script>
+    <script src="lib/clipboard.min.js"></script>
+    <script src="htmlpaste.js"></script>
+    <script src="lib/j2m.js"></script>
+    <script src="lib/markdown-browser-0.6.0-beta1/markdown.js"></script>
+
+  </head>
 <body>
+
   <header>
     <a class="menu-item right" href="https://github.com/dergachev/puppypaste"> <i class="fa fa-github"></i> Source on GitHub</a>
-    <a class="menu-item right" href="https://github.com/dergachev/puppypaste"><i class="fa fa-question-circle"></i>
- Help</a>
+    <a class="menu-item right" href="https://github.com/dergachev/puppypaste"><i class="fa fa-question-circle"></i> Help</a>
      <h1><img id="logo" src="puppypaste-logotype-600.gif" /> </h1>
   </header>
-  <div class="row cf toolbar">
-    <div class="col right">
-      <!--
-        <label><input type="checkbox" id="gfm"> GitHub Flavored Markdown</label>
-      -->
-    </div>
-  </div>
+
   <div class="row cf">
     <div class="col">
       <div class="col-container">
-      <h2>HTML <span>(copy/paste directly from your browser)</span></h2>
 
-      <p>Paste content from any website without losing HTML formatting, get back the source as HTML or Markdown. Great for wikis and <a href="https://gist.github.com">gists</a>.</p>
+        <h2>HTML <span>(copy/paste directly from your browser)</span></h2>
+        <p>Paste content from any website without losing HTML formatting, get back the source as HTML or Markdown. Great for wikis and <a href="https://gist.github.com">gists</a>.</p>
+        <div contenteditable="true" id="input" cols="100" rows="10">
+          Hello world!
+          <p>Paste some <b>HTML</b> into this box and the markdown will appear on the right.</p>
+          <p>Some things that work:</p>
+          <ul>
+            <li><a href="http://google.com">Links to Google</a></li>
+            <li>Nested lists of cool animals: <ul><li>shifty snakes</li><li><em>cool cats</em></li></ul> </li>
+            <li>Funky gifs!</li>
+            <li><img src="giphy.gif"/></li>
+          </ul>
+          <p>Enjoy!</p>
 
-      <div contenteditable="true" id="input" cols="100" rows="10">
-Hello world!
-<p>Paste some <b>HTML</b> into this box and the markdown will appear on the right.</p>
-<p>Some things that work:</p>
-<ul>
-  <li><a href="http://google.com">Links to Google</a></li>
-  <li>Nested lists of cool animals: <ul><li>shifty snakes</li><li><em>cool cats</em></li></ul> </li>
-  <li>Funky gifs!</li>
-  <li><img src="giphy.gif"/></li>
-</ul>
-
-<p>Enjoy!</p>
-
-</div>
+        </div>
       </div>
     </div>
 
     <div class="col">
       <div class="col-container">
-      <h2>convert to: </h2>
 
-      <div id="output-header">
-      <a id="output-header-markdown" class="active" href="#">Markdown</a>
-      <a id="output-header-html" href="#">HTML</a>
-      <a id="output-header-textile" href="#">Textile</a>
-      <a id="output-header-jira" href="#">Jira</a>
-      </div>
+        <h2>convert to: </h2>
 
-
-<div id="output-container" class="redactor_box">
-  <ul id="output-toolbar-markdown" class="active redactor_toolbar output-toolbar">
-    <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i>
-Select All and Copy to the clipboard</button></li>
-    <!--
-    <li><a href="javascript:void(null);" title="HTML2" class="redactor_btn_html2" tabindex="-1"> BOB</a> </li>
-    <li class="redactor_separator"></li>
-    <li><label><input type="checkbox" name="html-tidy" value="1"/ >Tidy HTML</label></li>
-    -->
-  </ul>
-  <ul id="output-toolbar-html" class="redactor_toolbar output-toolbar">
-    <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i>
-Select All and Copy to the clipboard</button></li>
-    <li class="redactor_separator"></li>
-    <li><div><input type="checkbox" id="setting-html-tidy" name="html-tidy" value="1"/ >Clean HTML</div></li>
-  </ul>
-  <ul id="output-toolbar-textile" class="redactor_toolbar output-toolbar">
-    <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i>
-Select All and Copy to the clipboard</button></li>
-  </ul>
-  <ul id="output-toolbar-jira" class="redactor_toolbar output-toolbar">
-    <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i>
-Select All and Copy to the clipboard</button></li>
-  </ul>
-      <textarea readonly id="output"></textarea>
-</div>
-</div>
-    </div>
-  </div>
-  <footer>
-        <p>PuppyPaste is a side-project of <a href="https://github.com/dergachev/">Alex Dergachev</a> who's currently using it to copy meeting notes from Gmail to Redmine as part of his work at <a href="http://evolvingweb.ca">Evolving Web</a>, a Drupal consultancy in Montreal, Canada.</p>
-
-        <div class="social">
-          <a href="http://evolvingweb.ca" target="_blank"><img class="avatar" src="https://www.gravatar.com/avatar/0bceeea1c7179c102b50812a1d2c74c3.png" alt="Me" /></a>
-          <ul>
-            <li><a href="http://github.com/dergachev" target="_blank"><i class="fa fa-github"></i></a></li>
-            <li><a href="http://twitter.com/dergachev" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/alexdergachev" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-          </ul>
+        <div id="output-header">
+          <a id="output-header-markdown" class="active" href="#">Markdown</a>
+          <a id="output-header-html" href="#">HTML</a>
+          <a id="output-header-textile" href="#">Textile</a>
+          <a id="output-header-jira" href="#">Jira</a>
         </div>
 
-      </footer>
 
-<script type="text/javascript">
+        <div id="output-container" class="redactor_box">
+          <ul id="output-toolbar-markdown" class="active redactor_toolbar output-toolbar">
+            <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i> Select All and Copy to the clipboard</button></li>
+            <!--
+            <li><a href="javascript:void(null);" title="HTML2" class="redactor_btn_html2" tabindex="-1"> BOB</a> </li>
+            <li class="redactor_separator"></li>
+            <li><label><input type="checkbox" name="html-tidy" value="1"/ >Tidy HTML</label></li>
+            -->
+          </ul>
+          <ul id="output-toolbar-html" class="redactor_toolbar output-toolbar">
+            <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i> Select All and Copy to the clipboard</button></li>
+            <li class="redactor_separator"></li>
+            <li><div><input type="checkbox" id="setting-html-tidy" name="html-tidy" value="1"/ >Clean HTML</div></li>
+          </ul>
+          <ul id="output-toolbar-textile" class="redactor_toolbar output-toolbar">
+            <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i> Select All and Copy to the clipboard</button></li>
+          </ul>
+          <ul id="output-toolbar-jira" class="redactor_toolbar output-toolbar">
+            <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i> Select All and Copy to the clipboard</button></li>
+          </ul>
+          <textarea readonly id="output"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
 
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
- (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
- m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
- })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <footer>
 
-ga('create', 'UA-37659053-3', 'auto');
-ga('send', 'pageview');
-</script>
-</body>
+      <p>PuppyPaste is a side-project of <a href="https://github.com/dergachev/">Alex Dergachev</a> who's currently using it to copy meeting notes from Gmail to Redmine as part of his work at <a href="http://evolvingweb.ca">Evolving Web</a>, a Drupal consultancy in Montreal, Canada.</p>
+
+      <div class="social">
+        <a href="http://evolvingweb.ca" target="_blank"><img class="avatar" src="https://www.gravatar.com/avatar/0bceeea1c7179c102b50812a1d2c74c3.png" alt="Me" /></a>
+        <ul>
+          <li><a href="http://github.com/dergachev" target="_blank"><i class="fa fa-github"></i></a></li>
+          <li><a href="http://twitter.com/dergachev" target="_blank"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="https://www.linkedin.com/in/alexdergachev" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        </ul>
+      </div>
+
+    </footer>
+
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-37659053-3', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
 </html>
