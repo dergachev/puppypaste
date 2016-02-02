@@ -77,6 +77,20 @@ function require(str) {
     return J2M.prototype.to_jira(mdText);
   }
 
+  function setupClipboard() {
+
+    var clipboard = new Clipboard('.copy-clipboard');
+    clipboard.on('success', function(e) {
+      e.clearSelection();
+      jQuery(e.trigger).find('span').html("Copied");
+      setTimeout(function () {
+        jQuery(e.trigger).find('span').html("Copy to clipboard");
+      }, 1000);
+      event.preventDefault();
+    });
+
+  }
+
   var types = {
     'markdown': {
       'converter': toMarkdown,
@@ -100,14 +114,15 @@ function require(str) {
     }
   }
 
+
+
   jQuery(function($) {
 
     // initialize on load
     input = jQuery('#input');
     output = jQuery('#output');
 
-    // Copy Paste setup
-    new Clipboard('.copy-clipboard');
+    setupClipboard();
 
 
     input.redactor({

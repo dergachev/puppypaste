@@ -30,7 +30,7 @@
     <a class="menu-item right" target="_blank" href="https://github.com/dergachev/puppypaste"><i class="fa fa-question-circle"></i> Help</a>
     <div>
        <div class="header-logo"><img id="logo" class="left" src="puppypaste-logotype-600.gif" /><h1>PuppyPaste</h1></div>
-       <div class="subtitle" ><strong>Paste content</strong> from any website <strong>without losing formatting</strong>, get back the source as HTML or Markdown. Great for wikis and <a href="https://gist.github.com">gists</a>.</div>
+       <div class="subtitle" ><strong>Paste content</strong> from any website <strong>without losing formatting</strong>, get back the source as HTML or Markdown. Great for wikis and <a href="https://gist.github.com" target="_blank">gists</a>.</div>
     </div>
   </header>
 
@@ -38,8 +38,8 @@
     <div class="col">
       <div class="col-container">
 
-        <h2>Rich Text </h2>
-        <p><em>(paste it from any Browser, MS&reg; Word, Rich Text Editor...)</em></p>
+        <h2>Paste your styled content here...</h2>
+        <p><em>From another webpage, MS Word, etc. </em></p>
         <div contenteditable="true" id="input" cols="100" rows="10">
           Hello world!
           <p>Paste some <b>HTML</b> into this box and the markdown will appear on the right.</p>
@@ -59,7 +59,7 @@
     <div class="col">
       <div class="col-container">
 
-        <h2>convert to: </h2>
+        <h2>Get it back as...</h2>
 
         <div id="output-header">
           <a id="output-header-markdown" class="active" href="#">Markdown</a>
@@ -71,23 +71,18 @@
 
         <div id="output-container" class="redactor_box">
           <ul id="output-toolbar-markdown" class="active redactor_toolbar output-toolbar">
-            <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><img class="clippy" src="clippy.svg" width="19" alt="Copy to clipboard"></button></li>
-            <!--
-            <li><a href="javascript:void(null);" title="HTML2" class="redactor_btn_html2" tabindex="-1"> BOB</a> </li>
-            <li class="redactor_separator"></li>
-            <li><label><input type="checkbox" name="html-tidy" value="1"/ >Tidy HTML</label></li>
-            -->
+            <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i> <span>Copy to clipboard</span></button></li>
           </ul>
           <ul id="output-toolbar-html" class="redactor_toolbar output-toolbar">
-            <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i> Select All and Copy to the clipboard</button></li>
+            <li><div id="setting-html-tidy-wrapper"><input type="checkbox" id="setting-html-tidy" name="html-tidy" value="1"/ >Clean HTML</div></li>
             <li class="redactor_separator"></li>
-            <li><div><input type="checkbox" id="setting-html-tidy" name="html-tidy" value="1"/ >Clean HTML</div></li>
+            <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i> <span>Copy to clipboard</span></button></li>
           </ul>
           <ul id="output-toolbar-textile" class="redactor_toolbar output-toolbar">
-            <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i> Select All and Copy to the clipboard</button></li>
+            <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i> <span>Copy to clipboard</span></button></li>
           </ul>
           <ul id="output-toolbar-jira" class="redactor_toolbar output-toolbar">
-            <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i> Select All and Copy to the clipboard</button></li>
+            <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i> <span>Copy to clipboard</span></button></li>
           </ul>
           <textarea readonly id="output"></textarea>
           </div>
