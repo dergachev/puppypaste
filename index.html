@@ -28,15 +28,18 @@
   <header>
     <a class="menu-item right" target="_blank" href="https://github.com/dergachev/puppypaste"> <i class="fa fa-github"></i> Source on GitHub</a>
     <a class="menu-item right" target="_blank" href="https://github.com/dergachev/puppypaste"><i class="fa fa-question-circle"></i> Help</a>
-     <h1><img id="logo" src="puppypaste-logotype-600.gif" /> </h1>
+    <div>
+       <div class="header-logo"><img id="logo" class="left" src="puppypaste-logotype-600.gif" /><h1>PuppyPaste</h1></div>
+       <div class="subtitle" ><strong>Paste content</strong> from any website <strong>without losing formatting</strong>, get back the source as HTML or Markdown. Great for wikis and <a href="https://gist.github.com">gists</a>.</div>
+    </div>
   </header>
 
   <div class="row cf">
     <div class="col">
       <div class="col-container">
 
-        <h2>HTML <span>(copy/paste directly from your browser)</span></h2>
-        <p>Paste content from any website without losing HTML formatting, get back the source as HTML or Markdown. Great for wikis and <a href="https://gist.github.com">gists</a>.</p>
+        <h2>Rich Text </h2>
+        <p><em>(paste it from any Browser, MS&reg; Word, Rich Text Editor...)</em></p>
         <div contenteditable="true" id="input" cols="100" rows="10">
           Hello world!
           <p>Paste some <b>HTML</b> into this box and the markdown will appear on the right.</p>
@@ -68,7 +71,7 @@
 
         <div id="output-container" class="redactor_box">
           <ul id="output-toolbar-markdown" class="active redactor_toolbar output-toolbar">
-            <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><i class="fa fa-files-o"></i> Select All and Copy to the clipboard</button></li>
+            <li><button class="copy-clipboard" data-clipboard-action="copy" data-clipboard-target="#output" ><img class="clippy" src="clippy.svg" width="19" alt="Copy to clipboard"></button></li>
             <!--
             <li><a href="javascript:void(null);" title="HTML2" class="redactor_btn_html2" tabindex="-1"> BOB</a> </li>
             <li class="redactor_separator"></li>

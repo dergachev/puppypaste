@@ -43,9 +43,16 @@ a:visited {
   text-decoration: none;
 }
 
+.header-logo{
+  margin: 10px auto;
+  text-align: center;
+  width: 300px;
+}
+
 h1 {
-  margin: 20px 0;
-  font-size: 1em;
+  float: left;
+  font-size: 3em;
+  margin: 12px 0 0;
   text-align: center;
 }
 
@@ -102,7 +109,7 @@ h2 {
   color: #757575;
   display: inline-block;
   margin-bottom: 0;
-  margin-top: 20px;
+  margin-top: 0px;
   padding: 10px 14px;
   -o-transition: all 0.3s linear;
   -moz-transition: all 0.3s linear;
@@ -117,14 +124,26 @@ h2 {
   text-decoration: none;
 }
 
+.copy-clipboard{
+  -o-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -khtml-transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  opacity: 0.4;
+}
+
+.copy-clipboard:hover{
+  opacity: 0.8;
+}
+
 .copy-clipboard {
   background: transparent none repeat scroll 0 0;
-  border: none;
+  border: medium none;
   font-size: 12px;
+  height: 27px;
   padding: 2px 10px 0;
-}
-.copy-clipboard:hover {
-  background: #dfdfdf;
 }
 
 @media (min-width: 768px) {
@@ -186,9 +205,19 @@ img.avatar {
   margin: 0 0 10px 0;
 }
 
+.subtitle{
+  clear: both;
+  font-size: 19px;
+  margin: 7px auto 30px;
+  max-width: 600px;
+  padding-top: 10px;
+  text-align: center;
+}
+
 img#logo {
-  width: 90%;
-  max-width: 400px;
+  float: left;
+  height: auto;
+  max-height: 80px;
 }
 
 @media (max-width: 640px) {
@@ -294,18 +323,14 @@ footer a:hover{
 }
 
 #output{
-  -moz-border-bottom-colors: none;
-  -moz-border-left-colors: none;
-  -moz-border-right-colors: none;
-  -moz-border-top-colors: none;
   background: #fff none repeat scroll 0 0;
-  border-color: transparent -moz-use-text-color;
+  border-color: transparent;
   border-image: none;
   border-radius: 0 0 3px 3px;
   border-style: dashed none solid;
   border-width: 1px 0;
   box-shadow: none;
-  color: #888888;
+  color: #666666;
   display: block;
   font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
   font-size: 14px;

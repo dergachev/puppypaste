@@ -107,7 +107,8 @@ function require(str) {
     output = jQuery('#output');
 
     // Copy Paste setup
-    new Clipboard('.copy-clipboard');
+  var a = new Clipboard('.copy-clipboard');
+
 
     input.redactor({
       keyupCallback: updateOutput,
